@@ -32,6 +32,14 @@ namespace HairSalon
       newClient.Save();
       Assert.Equal(1, Client.GetAll().Count);
     }
+    [Fact]
+    public void Test_Find_ReturnsCorrectClientById()
+    {
+      Client newClient = new Client ("Jennifer Smith", "333-333-3333", 1);
+      newClient.Save();
+      Client foundClient = Client.Find(newClient.GetId());
+      Assert.Equal(newClient, foundClient);
+    }
     public void Dispose()
     {
       Client.DeleteAll();
