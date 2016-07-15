@@ -11,12 +11,10 @@
     <ul>
       <h3>@client.GetName()</h3>
       <li>@client.GetPhoneNumber()</li>
-      <li>
-        <form class="form-group" action="/@Model.GetId()/@Model.GetName()/client_list/client_deleted" method="post">
-          <input type="hidden" name="client-id" value="@client.GetId()">
-          <button type="submit" class="btn btn-warning">Delete Client</button>
-        </form>
-      </li>
+      <form class="form-group" action="/@Model.GetId()/@Model.GetName()/client_list/client_deleted" method="post">
+        <input type="hidden" name="client-id" value="@client.GetId()">
+        <button type="submit" class="btn btn-warning">Delete Client</button>
+      </form>
     </ul>
   }
   <h2 id="add-stylist-header">Add a New Client</h2>
@@ -27,7 +25,7 @@
     <button type="submit" class="btn btn-success">Add Client</button>
   </form>
   <p><a href="/">Home</a></p>
-  <form class="form-group" action="/@Model.GetId()/@Model.GetName()/deleted" method="post">
+  <form class="form-group" action="/@Model.GetId()/@Model.GetName()/stylist_deleted" method="post">
     <input type="hidden" name="stylist-id" value="@Model.GetId()">
     <button type="submit" class="btn btn-danger">Delete Stylist</button>
   </form>

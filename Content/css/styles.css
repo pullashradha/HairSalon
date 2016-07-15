@@ -45,6 +45,12 @@ p {
   margin-bottom: 50px;
 }
 
+.btn-warning {
+  font-size: 12pt;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .btn-danger {
   font-size: 20pt;
   margin-bottom: 75px;

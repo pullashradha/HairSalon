@@ -38,7 +38,7 @@ namespace HairSalon
         Client.DeleteOne(Request.Form ["client-id"]);
         return View ["stylist.cshtml", selectedStylist];
       };
-      Post ["/{id}/{name}/deleted"] = parameters => {
+      Post ["/{id}/{name}/stylist_deleted"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         Stylist.DeleteOne(Request.Form["stylist-id"]);
         return View ["stylist_deleted.cshtml", selectedStylist];
