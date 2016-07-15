@@ -6,7 +6,7 @@
 
 ## Description
 
-This program is a web application designed for managing a hair salon. It will allow the owner to add stylists to a list, add clients for each stylist, and store the information. The program will also allow for basic data manipulation such as: removing a stylist from the salon database, removing a client from a stylist's registry, and changing a client's stylist.
+This program is a web application designed for managing a hair salon. It will allow the owner to add stylists to a list, add clients for each stylist, and store the information. The program will also allow for basic data manipulation such as: removing a stylist from the salon database, removing a client from a stylist's registry, and deleting all stylists and clients.
 
 ## Setup/Installation Requirements
 
