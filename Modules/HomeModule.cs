@@ -18,11 +18,17 @@ namespace HairSalon
         newStylist.Save();
         return View ["stylist_created.cshtml", newStylist];
       };
-      // Post ["/{id}/{name}/client_list"] = _ => {
-      //   return View ["stylist.cshtml", Stylist.GetClients()];
-      // };
+      Get ["/{id}/{name}/client_list"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        return View ["stylist.cshtml", selectedStylist];
+      };
       // Post ["/stylist/deleted"] = _ => {
-      //   return View ["stylist_deleted.cshtml", Stylist.DeleteOne()];
+      //   Stylist.DeleteOne(Request.Form ["stylistId"]);
+      //   return View ["stylist_deleted.cshtml", Stylist.GetAll()];
+      // };
+      // Post ["/stylist/deleted_all"] = _ => {
+      //   Stylist allStylists = Stylist.DeleteAll();
+      //   return View ["index.cshtml", allStylists];
       // };
     }
   }

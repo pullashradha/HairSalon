@@ -40,5 +40,13 @@ p {
 .btn-success {
   font-size: 15pt;
   margin-top: 35px;
+  margin-bottom: 50px;
+}
+
+.btn-danger {
+  font-size: 20pt;
   margin-bottom: 75px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

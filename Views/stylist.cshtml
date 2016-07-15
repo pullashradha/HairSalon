@@ -7,7 +7,7 @@
   <h3>Call for appointments: @Model.GetPhoneNumber()</h3>
   <h2>Current Clients</h2>
   <ul>
-    @foreach (var client in Model)
+    @foreach (var client in Model.GetClients())
     {
       <li>
         <h3>@client.GetName()</h3>
@@ -15,8 +15,14 @@
       </li>
     }
   </ul>
-  <form class="form-group" action="/stylist/deleted" method="post">
-    <button type="submit" class="btn btn-warning">Delete Stylist</button>
+  <h2 id="add-stylist-header">Add a New Client</h2>
+  <form class="form-group" action="/@Model.GetId()/@Model.GetName()/client_list" method="post">
+    <p>Name: <input type="text" name="client-name" class="form-control"></p>
+    <p>Phone Number: <input type="text" name="clientt-phone-number" class="form-control"></p>
+    <button type="submit" class="btn btn-success">Add Client</button>
   </form>
   <p><a href="/">Home</a></p>
+  <form class="form-group" action="/stylist/deleted" method="post">
+    <button type="submit" class="btn btn-danger">Delete Stylist</button>
+  </form>
 </body>
