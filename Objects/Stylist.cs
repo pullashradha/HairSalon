@@ -15,7 +15,7 @@ namespace HairSalon
       _name = Name;
       _phoneNumber = PhoneNumber;
     }
-    public override bool Equals(System.Object otherStylist)
+    public override bool Equals (System.Object otherStylist)
     {
       if (otherStylist is Stylist)
       {
@@ -38,7 +38,7 @@ namespace HairSalon
     {
       return _name;
     }
-    public void SetName(string newName)
+    public void SetName (string newName)
     {
       _name = newName;
     }
@@ -46,7 +46,7 @@ namespace HairSalon
     {
       return _phoneNumber;
     }
-    public void SetPhoneNumber(string newPhoneNumber)
+    public void SetPhoneNumber (string newPhoneNumber)
     {
       _phoneNumber = newPhoneNumber;
     }
@@ -104,7 +104,7 @@ namespace HairSalon
         conn.Close();
       }
     }
-    public static Stylist Find(int searchId)
+    public static Stylist Find (int searchId)
     {
       List<Stylist> allStylists = new List<Stylist> {};
       SqlConnection conn = DB.Connection();
@@ -133,6 +133,17 @@ namespace HairSalon
         conn.Close();
       }
       return allStylists[0];
+    }
+    public static void DeleteOne (int searchId)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM stylists WHERE id = @SearchId;", conn);
+      SqlParameter idParameter = new SqlParameter();
+      idParameter.ParameterName = "@SearchId";
+      idParameter.Value = searchId;
+      cmd.Parameters.Add(idParameter);
+      cmd.ExecuteNonQuery();
     }
     public static void DeleteAll()
     {

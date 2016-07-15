@@ -33,7 +33,7 @@ namespace HairSalon
       Assert.Equal(1, Stylist.GetAll().Count);
     }
     [Fact]
-    public void Test_Find_ReturnCorrectStylistById()
+    public void Test_Find_ReturnsCorrectStylistById()
     {
       Stylist newStylist = new Stylist ("Terry Jones", "555-555-5555");
       newStylist.Save();
@@ -41,6 +41,17 @@ namespace HairSalon
       Assert.Equal(newStylist, foundStylist);
     }
     [Fact]
+    public void Test_DeleteOne_DeletesOneStylist()
+    {
+      Stylist firstStylist = new Stylist ("Terry Jones", "555-555-5555");
+      firstStylist.Save();
+      Stylist secondStylist = new Stylist ("Page Williams", "000-000-0000");
+      secondStylist.Save();
+      Stylist thirdStylist = new Stylist ("Burrow Davidson", "222-222-2222");
+      thirdStylist.Save();
+      Stylist.DeleteOne(firstStylist.GetId());
+      Assert.Equal(2, Stylist.GetAll().Count);
+    }
     public void Dispose()
     {
       Stylist.DeleteAll();
