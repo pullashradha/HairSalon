@@ -78,7 +78,6 @@ namespace HairSalon
     }
     public void Save()
     {
-      List<Stylist> stylistsList = new List<Stylist> {};
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlDataReader rdr;
@@ -104,6 +103,36 @@ namespace HairSalon
       {
         conn.Close();
       }
+    }
+    public static Stylist Find(int searchId)
+    {
+      List<Stylist> allStylists = new List<Stylist> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM stylists WHERE id = @SearchId;", conn);
+      SqlParameter idParameter = new SqlParameter();
+      idParameter.ParameterName = "@SearchId";
+      idParameter.Value = searchId;
+      cmd.Parameters.Add(idParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int stylistId = rdr.GetInt32(0);
+        string stylistName = rdr.GetString(1);
+        string stylistPhoneNumber = rdr.GetString(2);
+        Stylist newStylist = new Stylist (stylistName, stylistPhoneNumber, stylistId);
+        allStylists.Add(newStylist);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allStylists[0];
     }
     public static void DeleteAll()
     {

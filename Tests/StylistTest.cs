@@ -21,16 +21,24 @@ namespace HairSalon
     [Fact]
     public void Test_Equal_StylistEntriesMatch()
     {
-      Stylist firstStylist = new Stylist ("Stylist Name", "Stylist Phone Number");
-      Stylist secondStylist = new Stylist ("Stylist Name", "Stylist Phone Number");
+      Stylist firstStylist = new Stylist ("Terry Jones", "555-555-5555");
+      Stylist secondStylist = new Stylist ("Terry Jones", "555-555-5555");
       Assert.Equal(firstStylist, secondStylist);
     }
     [Fact]
     public void Test_Save_SavesAllStylistsToDatabase()
     {
-      Stylist newStylist = new Stylist ("Stylist Name", "Stylist Phone Number");
+      Stylist newStylist = new Stylist ("Terry Jones", "555-555-5555");
       newStylist.Save();
       Assert.Equal(1, Stylist.GetAll().Count);
+    }
+    [Fact]
+    public void Test_Find_ReturnCorrectStylistById()
+    {
+      Stylist newStylist = new Stylist ("Terry Jones", "555-555-5555");
+      newStylist.Save();
+      Stylist foundStylist = Stylist.Find(newStylist.GetId());
+      Assert.Equal(newStylist, foundStylist);
     }
     [Fact]
     public void Dispose()
