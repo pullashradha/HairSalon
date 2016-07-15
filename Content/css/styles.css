@@ -1,0 +1,44 @@
+body {
+  font-family: serif;
+  color: #000000;
+  background-color: #FFFFFF;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+h1 {
+  font-size: 60pt;
+  text-align: center;
+}
+
+h2 {
+  font-size: 35pt;
+  text-align: center;
+}
+
+#current-stylists-header {
+  margin-top: 50px;
+}
+
+#add-stylist-header {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 20pt;
+}
+
+p {
+  font-size: 15pt;
+}
+
+.btn-success {
+  font-size: 15pt;
+  margin-top: 35px;
+  margin-bottom: 75px;
+}

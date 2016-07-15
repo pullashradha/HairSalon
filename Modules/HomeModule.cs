@@ -6,7 +6,9 @@ namespace HairSalon
   {
     public HomeModule()
     {
-      
+      Get ["/"] = _ => {
+        return View ["index.cshtml", Stylist.GetAll()];
+      };
     }
   }
 }
