@@ -6,7 +6,7 @@ using Xunit;
 
 namespace HairSalon
 {
-  public class ClientTest
+  public class ClientTest : IDisposable
   {
     public ClientTest()
     {
@@ -24,6 +24,17 @@ namespace HairSalon
       Client firstClient = new Client ("Jennifer Smith", "333-333-3333", 1);
       Client secondClient = new Client("Jennifer Smith", "333-333-3333", 1);
       Assert.Equal(firstClient, secondClient);
+    }
+    [Fact]
+    public void Test_Save_SavesAllClientsToDatabase()
+    {
+      Client newClient = new Client ("Jennifer Smith", "333-333-3333", 1);
+      newClient.Save();
+      Assert.Equal(1, Client.GetAll().Count);
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
     }
   }
 }
