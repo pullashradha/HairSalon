@@ -6,7 +6,7 @@ using Xunit;
 
 namespace HairSalon
 {
-  public class StylistTest
+  public class StylistTest : IDisposable
   {
     public StylistTest()
     {
@@ -31,6 +31,11 @@ namespace HairSalon
       Stylist newStylist = new Stylist ("Stylist Name", "Stylist Phone Number");
       newStylist.Save();
       Assert.Equal(1, Stylist.GetAll().Count);
+    }
+    [Fact]
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
     }
   }
 }
