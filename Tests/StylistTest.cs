@@ -13,10 +13,10 @@ namespace HairSalon
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
     }
     [Fact]
-    public void Test_Empty_GetAllStylists()
+    public void Test_EmptyDatabase_CountStylists()
     {
-      Stylist newStylist = new Stylist ("Stylist Name", "Stylist's Phone Number");
-      Assert.Equal(0, newStylist.GetAll());
+      int numberOfStylists = Stylist.GetAll().Count;
+      Assert.Equal(0, numberOfStylists);
     }
   }
 }

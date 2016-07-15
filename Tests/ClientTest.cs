@@ -6,7 +6,7 @@ using Xunit;
 
 namespace HairSalon
 {
-  public class ClientTest : IDisposable
+  public class ClientTest
   {
     public ClientTest()
     {
