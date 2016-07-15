@@ -15,6 +15,21 @@ namespace HairSalon
       _name = Name;
       _phoneNumber = PhoneNumber;
     }
+    public override bool Equals(System.Object otherStylist)
+    {
+      if (otherStylist is Stylist)
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        bool idEquality = (this.GetId() == newStylist.GetId());
+        bool nameEquality = (this.GetName() == newStylist.GetName());
+        bool phoneEquality = (this.GetPhoneNumber() == newStylist.GetPhoneNumber());
+        return (nameEquality && phoneEquality && idEquality);
+      }
+      else
+      {
+        return false;
+      }
+    }
     public int GetId()
     {
       return _id;

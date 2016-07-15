@@ -18,5 +18,12 @@ namespace HairSalon
       int numberOfStylists = Stylist.GetAll().Count;
       Assert.Equal(0, numberOfStylists);
     }
+    [Fact]
+    public void Test_Equal_StylistEntriesMatch()
+    {
+      Stylist firstStylist = new Stylist ("Stylist Name", "Stylist Phone Number");
+      Stylist secondStylist = new Stylist ("Stylist Name", "Stylist Phone Number");
+      Assert.Equal(firstStylist, secondStylist);
+    }
   }
 }
