@@ -33,10 +33,11 @@ namespace HairSalon
         newClient.Save();
         return View ["stylist.cshtml", Stylist.Find(Request.Form["stylist-id"])];
       };
-      // Post ["/stylist/deleted"] = _ => {
-      //   Stylist.DeleteOne(Request.Form ["stylistId"]);
-      //   return View ["stylist_deleted.cshtml", Stylist.GetAll()];
-      // };
+      Post ["/{id}/{name}/deleted"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        Stylist.DeleteOne(Request.Form["stylist-id"]);
+        return View ["stylist_deleted.cshtml", selectedStylist];
+      };
       // Post ["/stylist/deleted_all"] = _ => {
       //   Stylist allStylists = Stylist.DeleteAll();
       //   return View ["index.cshtml", allStylists];

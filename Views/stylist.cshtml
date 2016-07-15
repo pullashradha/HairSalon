@@ -21,7 +21,8 @@
     <button type="submit" class="btn btn-success">Add Client</button>
   </form>
   <p><a href="/">Home</a></p>
-  <!-- <form class="form-group" action="/stylist/deleted" method="post">
+  <form class="form-group" action="/@Model.GetId()/@Model.GetName()/deleted" method="post">
+    <input type="hidden" name="stylist-id" value="@Model.GetId()">
     <button type="submit" class="btn btn-danger">Delete Stylist</button>
-  </form> -->
+  </form>
 </body>
