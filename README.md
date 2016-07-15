@@ -10,20 +10,24 @@ This program is a web application designed for managing a hair salon. It will al
 
 ## Setup/Installation Requirements
 
-This program can only be accessed on a PC with Windows 10, and with git, atom, and SSMS installed.
+This program can only be accessed on a PC with Windows 10, and with Git, Atom, and Sql Server Management Studio (SSMS) installed.
 
 * Clone this repository
-* Restore the database and test database:
-  *
-  *
-  *
+* Import the database and test database:
+  * Open SSMS
+  * Select the following buttons from the top nav bar to open the database scripts file: File>Open>File>"Desktop\HairSalon\SqlDatabases\hair_salon.sql"
+  * Save the hair_salon.sql file
+  * To create the database: click the "!Execute" button on the top nav bar
+  * Repeat the above steps to import the test database
 * View the web page:
   * Type following command into PowerShell > dnx kestrel
-  * Open Chrome and type in the following address: "localhost:5004"
+  * Open Chrome and type in the following address: localhost:5004
 
 ## Known Bugs
 
-No known bugs.
+* Deleting a Stylist through the web page does not delete all respective clients under that Stylist in the database
+* Id numbers for the Stylists and Clients do not reset after previous entries are deleted from the database
+* CSS styling is not functioning on all the pages, aside from index.cshtml
 
 ## Specifications
 
