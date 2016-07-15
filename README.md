@@ -33,7 +33,7 @@ Add stylist to database in stylists table | --- | ---
 Add client to database under a specific stylist's registry/category | --- | ---
 View all stylists in the salon | --- | ---
 View all clients for each individual stylist | --- | ---
-Delete a stylist & respective clients from database | --- | ---
+Delete a stylist & corresponding clients from database | --- | ---
 Delete a client from a stylist's registry, without deleting other clients | --- | ---
 
 ## Future Features

@@ -1,0 +1,22 @@
+<head>
+  <link rel="stylesheet" href="Content/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="Content/css/styles.css" type="text/css">
+</head>
+<body>
+  <h1 class="page-header">@Model.GetName()</h1>
+  <h3>Call for appointments: @Model.GetPhoneNumber()</h3>
+  <h2>Current Clients</h2>
+  <ul>
+    @foreach (var client in Model)
+    {
+      <li>
+        <h3>@client.GetName()</h3>
+        <p>@client.GetPhoneNumber()</p>
+      </li>
+    }
+  </ul>
+  <form class="form-group" action="/stylist/deleted" method="post">
+    <button type="submit" class="btn btn-warning">Delete Stylist</button>
+  </form>
+  <p><a href="/">Home</a></p>
+</body>
