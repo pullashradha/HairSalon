@@ -11,6 +11,12 @@
     <ul>
       <h3>@client.GetName()</h3>
       <li>@client.GetPhoneNumber()</li>
+      <li>
+        <form class="form-group" action="/@Model.GetId()/@Model.GetName()/client_list/client_deleted" method="post">
+          <input type="hidden" name="client-id" value="@client.GetId()">
+          <button type="submit" class="btn btn-warning">Delete Client</button>
+        </form>
+      </li>
     </ul>
   }
   <h2 id="add-stylist-header">Add a New Client</h2>
