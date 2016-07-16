@@ -7,13 +7,25 @@ namespace HairSalon
   public class Stylist
   {
     private int _id;
-    private string _name;
+    private string _firstName;
+    private string _lastName;
     private string _phoneNumber;
-    public Stylist (string Name, string PhoneNumber, int Id = 0)
+    private string _email;
+    private string _streetAddress;
+    private string _city;
+    private string _state;
+    private string _zipcode;
+    public Stylist (string FirstName, string LastName, string PhoneNumber, string Email, string StreetAddress, string City, string State, string Zipcode, int Id = 0)
     {
       _id = Id;
-      _name = Name;
+      _firstName = FirstName;
+      _lastName = LastName;
       _phoneNumber = PhoneNumber;
+      _email = Email;
+      _streetAddress = StreetAddress;
+      _city = City;
+      _state = State;
+      _zipcode = Zipcode;
     }
     public override bool Equals (System.Object otherStylist)
     {
@@ -21,9 +33,15 @@ namespace HairSalon
       {
         Stylist newStylist = (Stylist) otherStylist;
         bool idEquality = (this.GetId() == newStylist.GetId());
-        bool nameEquality = (this.GetName() == newStylist.GetName());
+        bool firstNameEquality = (this.GetFirstName() == newStylist.GetFirstName());
+        bool lastNameEquality = (this.GetLastName() == newStylist.GetLastName());
         bool phoneEquality = (this.GetPhoneNumber() == newStylist.GetPhoneNumber());
-        return (nameEquality && phoneEquality && idEquality);
+        bool emailEquality = (this.GetEmail() == newStylist.GetEmail());
+        bool streetEquality = (this.GetStreetAddress() == newStylist.GetStreetAddress());
+        bool cityEquality = (this.GetCity() == newStylist.GetCity());
+        bool stateEquality = (this.GetState() == newStylist.GetState());
+        bool zipcodeEquality = (this.GetZipcode() == newStylist.GetZipcode());
+        return (firstNameEquality && lastNameEquality && phoneEquality && emailEquality && streetEquality && cityEquality && stateEquality && zipcodeEquality && idEquality);
       }
       else
       {
@@ -34,13 +52,21 @@ namespace HairSalon
     {
       return _id;
     }
-    public string GetName()
+    public string GetFirstName()
     {
-      return _name;
+      return _firstName;
     }
-    public void SetName (string newName)
+    public void SetFirstName (string newFirstName)
     {
-      _name = newName;
+      _firstName = newFirstName;
+    }
+    public string GetLastName()
+    {
+      return _lastName;
+    }
+    public void SetLastName (string newLastName)
+    {
+      _lastName = newLastName;
     }
     public string GetPhoneNumber()
     {
@@ -49,6 +75,46 @@ namespace HairSalon
     public void SetPhoneNumber (string newPhoneNumber)
     {
       _phoneNumber = newPhoneNumber;
+    }
+    public string GetEmail()
+    {
+      return _email;
+    }
+    public void SetEmail (string newEmail)
+    {
+      _email = newEmail;
+    }
+    public string GetStreetAddress()
+    {
+      return _streetAddress;
+    }
+    public void SetStreetAddress (string newStreetAddress)
+    {
+      _streetAddress = newStreetAddress;
+    }
+    public string GetCity()
+    {
+      return _city;
+    }
+    public void SetCity (string newCity)
+    {
+      _city = newCity;
+    }
+    public string GetState()
+    {
+      return _state;
+    }
+    public void SetState (string newState)
+    {
+      _state = newState;
+    }
+    public string GetZipcode()
+    {
+      return _zipcode;
+    }
+    public void SetZipcode (string newZipcode)
+    {
+      _zipcode = newZipcode;
     }
     public static List<Stylist> GetAll()
     {
@@ -61,9 +127,15 @@ namespace HairSalon
       while (rdr.Read())
       {
         int stylistId = rdr.GetInt32(0);
-        string stylistName = rdr.GetString(1);
-        string stylistPhoneNumber = rdr.GetString(2);
-        Stylist newStylist = new Stylist (stylistName, stylistPhoneNumber, stylistId);
+        string stylistFirstName = rdr.GetString(1);
+        string stylistLastName = rdr.GetString(2);
+        string stylistPhoneNumber = rdr.GetString(3);
+        string stylistEmail = rdr.GetString(4);
+        string stylistStreet = rdr.GetString(5);
+        string stylistCity = rdr.GetString(6);
+        string stylistState = rdr.GetString(7);
+        string stylistZipcode = rdr.GetString(8);
+        Stylist newStylist = new Stylist (stylistFirstName, stylistLastName, stylistPhoneNumber, stringEmail, stringStreet, stringCity, stringState, stringZipcode, stylistId);
         allStylists.Add(newStylist);
       }
       if (rdr != null)
