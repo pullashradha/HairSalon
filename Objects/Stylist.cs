@@ -153,15 +153,39 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlDataReader rdr;
-      SqlCommand cmd = new SqlCommand ("INSERT INTO stylists (name, phone_number) OUTPUT INSERTED.id VALUES (@StylistName, @StylistPhoneNumber);", conn);
-      SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName = "@StylistName";
-      nameParameter.Value = this.GetName();
+      SqlCommand cmd = new SqlCommand ("INSERT INTO stylists (first_name, last_name, phone_number, email, street_address, city_address, state_address, zipcode) OUTPUT INSERTED.id VALUES (@StylistFirstName, @StylistLastName, @StylistPhoneNumber, @StylistEmail, @StylistStreetAddress, @StylistCity, @StylistState, @StylistZipcode);", conn);
+      SqlParameter firstNameParameter = new SqlParameter();
+      firstNameParameter.ParameterName = "@StylistFirstName";
+      firstNameParameter.Value = this.GetFirstName();
+      SqlParameter lastNameParameter = new SqlParameter();
+      lastNameParameter.ParameterName = "@StylistLastName";
+      lastNameParameter.Value = this.GetLastName();
       SqlParameter phoneParameter = new SqlParameter();
       phoneParameter.ParameterName = "@StylistPhoneNumber";
       phoneParameter.Value = this.GetPhoneNumber();
-      cmd.Parameters.Add(nameParameter);
+      SqlParameter emailParameter = new SqlParameter();
+      emailParameter.ParameterName = "@StylistEmail";
+      emailParameter.Value = this.GetEmail();
+      SqlParameter streetParameter = new SqlParameter();
+      streetParameter.ParameterName = "@StylistStreetAddress";
+      streetParameter.Value = this.GetStreetAddress();
+      SqlParameter cityParameter = new SqlParameter();
+      cityParameter.ParameterName = "@StylistCity";
+      cityParameter.Value = this.GetCity();
+      SqlParameter stateParameter = new SqlParameter();
+      stateParameter.ParameterName = "@StylistState";
+      stateParameter.Value = this.GetState();
+      SqlParameter zipcodeParameter = new SqlParameter();
+      zipcodeParameter.ParameterName = "@StylistZipcode";
+      zipcodeParameter.Value = this.GetZipcode();
+      cmd.Parameters.Add(firstNameParameter);
+      cmd.Parameters.Add(lastNameParameter);
       cmd.Parameters.Add(phoneParameter);
+      cmd.Parameters.Add(emailParameter);
+      cmd.Parameters.Add(streetParameter);
+      cmd.Parameters.Add(cityParameter);
+      cmd.Parameters.Add(stateParameter);
+      cmd.Parameters.Add(zipcodeParameter);
       rdr = cmd.ExecuteReader();
       while (rdr.Read())
       {
@@ -191,9 +215,15 @@ namespace HairSalon
       while (rdr.Read())
       {
         int stylistId = rdr.GetInt32(0);
-        string stylistName = rdr.GetString(1);
-        string stylistPhoneNumber = rdr.GetString(2);
-        Stylist newStylist = new Stylist (stylistName, stylistPhoneNumber, stylistId);
+        string stylistFirstName = rdr.GetString(1);
+        string stylistLastName = rdr.GetString(2);
+        string stylistPhoneNumber = rdr.GetString(3);
+        string stylistEmail = rdr.GetString(4);
+        string stylistStreet = rdr.GetString(5);
+        string stylistCity = rdr.GetString(6);
+        string stylistState = rdr.GetString(7);
+        string stylistZipcode = rdr.GetString(8);
+        Stylist newStylist = new Stylist (stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZipcode, stylistId);
         allStylists.Add(newStylist);
       }
       if (rdr != null)
@@ -239,10 +269,12 @@ namespace HairSalon
       while (rdr.Read())
       {
         int clientId = rdr.GetInt32(0);
-        string clientName = rdr.GetString(1);
-        string clientPhoneNumber = rdr.GetString(2);
+        string clientFirstName = rdr.GetString(1);
+        string clientLastName = rdr.GetString(2);
+        string clientPhoneNumber = rdr.GetString(3);
+        string clientEmail = rdr.GetString(4);
         int stylistId = this._id;
-        Client newClient = new Client (clientName, clientPhoneNumber, stylistId, clientId);
+        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
         allClients.Add(newClient);
       }
       if (rdr != null)
