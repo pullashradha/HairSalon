@@ -8,7 +8,7 @@
   <ul>
     @foreach (var stylist in Model)
     {
-      <li><a href="/@stylist.GetId()/@stylist.GetName()/client_list">@stylist.GetName()</a></li>
+      <li><a href="/@stylist.GetId()/@stylist.GetFirstName()_@stylist.GetLastName()/client_list">@stylist.GetFirstName() @stylist.GetLastName()</a></li>
     }
   </ul>
   <h2 id="add-stylist-header">Add a New Stylist</h2>
