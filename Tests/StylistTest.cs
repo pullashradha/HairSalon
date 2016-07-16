@@ -21,21 +21,21 @@ namespace HairSalon
     [Fact]
     public void Test_Equal_StylistEntriesMatch()
     {
-      Stylist firstStylist = new Stylist ("Terry Jones", "555-555-5555");
-      Stylist secondStylist = new Stylist ("Terry Jones", "555-555-5555");
+      Stylist firstStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
+      Stylist secondStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       Assert.Equal(firstStylist, secondStylist);
     }
     [Fact]
     public void Test_Save_SavesAllStylistsToDatabase()
     {
-      Stylist newStylist = new Stylist ("Terry Jones", "555-555-5555");
+      Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       newStylist.Save();
       Assert.Equal(1, Stylist.GetAll().Count);
     }
     [Fact]
     public void Test_Find_ReturnsCorrectStylistById()
     {
-      Stylist newStylist = new Stylist ("Terry Jones", "555-555-5555");
+      Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       newStylist.Save();
       Stylist foundStylist = Stylist.Find(newStylist.GetId());
       Assert.Equal(newStylist, foundStylist);
@@ -43,11 +43,11 @@ namespace HairSalon
     [Fact]
     public void Test_DeleteOne_DeletesOneStylist()
     {
-      Stylist firstStylist = new Stylist ("Terry Jones", "555-555-5555");
+      Stylist firstStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       firstStylist.Save();
-      Stylist secondStylist = new Stylist ("Page Williams", "000-000-0000");
+      Stylist secondStylist = new Stylist ("Page", "Williams", "000-000-0000", "williams@gmail.com", "5432 NE Jefferson Ave.", "Portland", "OR", "93210");
       secondStylist.Save();
-      Stylist thirdStylist = new Stylist ("Burrow Davidson", "222-222-2222");
+      Stylist thirdStylist = new Stylist ("Burrow", "Davidson", "222-222-2222", "davidson@gmail.com", "1112 E Oak Blvd.", "Seattle", "WA", "87456");
       thirdStylist.Save();
       Stylist.DeleteOne(firstStylist.GetId());
       Assert.Equal(2, Stylist.GetAll().Count);
@@ -55,11 +55,11 @@ namespace HairSalon
     [Fact]
     public void Test_GetClients_ReturnsAllClientsById()
     {
-      Stylist newStylist = new Stylist ("Terry Jones", "555-555-5555");
+      Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       newStylist.Save();
-      Client firstClient = new Client ("Rubab Shah", "777-777-7777", newStylist.GetId());
+      Client firstClient = new Client ("Rubab", "Shah", "777-777-7777", "shah@gmail.com", newStylist.GetId());
       firstClient.Save();
-      Client secondClient = new Client ("Maya Reddy", "888-888-8888", newStylist.GetId());
+      Client secondClient = new Client ("Maya", "Reddy", "888-888-8888", "reddy@gmail.com", newStylist.GetId());
       secondClient.Save();
       List<Client> allClients = new List<Client> {firstClient, secondClient};
       Assert.Equal(allClients, newStylist.GetClients());
