@@ -41,7 +41,7 @@ namespace HairSalon
       Assert.Equal(newClient, foundClient);
     }
     [Fact]
-    public void Test_DeleteOne_DeleteClientById()
+    public void Test_DeleteOne_DeletesOneClient()
     {
       Client firstClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
       firstClient.Save();

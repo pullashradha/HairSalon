@@ -135,7 +135,7 @@ namespace HairSalon
         string stylistCity = rdr.GetString(6);
         string stylistState = rdr.GetString(7);
         string stylistZipcode = rdr.GetString(8);
-        Stylist newStylist = new Stylist (stylistFirstName, stylistLastName, stylistPhoneNumber, stringEmail, stringStreet, stringCity, stringState, stringZipcode, stylistId);
+        Stylist newStylist = new Stylist (stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZipcode, stylistId);
         allStylists.Add(newStylist);
       }
       if (rdr != null)
