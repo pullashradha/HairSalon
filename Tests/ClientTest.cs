@@ -21,21 +21,21 @@ namespace HairSalon
     [Fact]
     public void Test_Equal_ClientEntriesMatch()
     {
-      Client firstClient = new Client ("Jennifer Smith", "333-333-3333", 1);
-      Client secondClient = new Client("Jennifer Smith", "333-333-3333", 1);
+      Client firstClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
+      Client secondClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
       Assert.Equal(firstClient, secondClient);
     }
     [Fact]
     public void Test_Save_SavesAllClientsToDatabase()
     {
-      Client newClient = new Client ("Jennifer Smith", "333-333-3333", 1);
+      Client newClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
       newClient.Save();
       Assert.Equal(1, Client.GetAll().Count);
     }
     [Fact]
     public void Test_Find_ReturnsCorrectClientById()
     {
-      Client newClient = new Client ("Jennifer Smith", "333-333-3333", 1);
+      Client newClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
       newClient.Save();
       Client foundClient = Client.Find(newClient.GetId());
       Assert.Equal(newClient, foundClient);
@@ -43,11 +43,11 @@ namespace HairSalon
     [Fact]
     public void Test_DeleteOne_DeleteClientById()
     {
-      Client firstClient = new Client ("Jennifer Smith", "333-333-3333", 1);
+      Client firstClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
       firstClient.Save();
-      Client secondClient = new Client ("Rubab Shah", "777-777-7777", 2);
+      Client secondClient = new Client ("Rubab", "Shah", "777-777-7777", "shah@gmail.com", 2);
       secondClient.Save();
-      Client thirdClient = new Client ("Maya Reddy", "888-888-8888", 3);
+      Client thirdClient = new Client ("Maya", "Reddy", "888-888-8888", "reddy@gmail.com", 3);
       thirdClient.Save();
       Client.DeleteOne(firstClient.GetId());
       Assert.Equal(2, Client.GetAll().Count);

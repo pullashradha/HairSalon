@@ -7,14 +7,18 @@ namespace HairSalon
   public class Client
   {
     private int _id;
-    private string _name;
+    private string _firstName;
+    private string _lastName;
     private string _phoneNumber;
+    private string _email;
     private int _stylistId;
-    public Client (string Name, string PhoneNumber, int StylistId, int Id = 0)
+    public Client (string FirstName, string LastName, string PhoneNumber, string Email, int StylistId, int Id = 0)
     {
       _id = Id;
-      _name = Name;
+      _firstName = FirstName;
+      _lastName = LastName;
       _phoneNumber = PhoneNumber;
+      _email = Email;
       _stylistId = StylistId;
     }
     public override bool Equals (System.Object otherClient)
@@ -23,10 +27,12 @@ namespace HairSalon
       {
         Client newClient = (Client) otherClient;
         bool idEquality = (this.GetId() == newClient.GetId());
-        bool nameEquality = (this.GetName() == newClient.GetName());
+        bool firstNameEquality = (this.GetFirstName() == newClient.GetFirstName());
+        bool lastNameEquality = (this.GetLastName() == newClient.GetLastName());
         bool phoneEquality = (this.GetPhoneNumber() == newClient.GetPhoneNumber());
+        bool emailEquality = (this.GetEmail() == newClient.GetEmail());
         bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
-        return (nameEquality && phoneEquality && stylistIdEquality && idEquality);
+        return (firstNameEquality && lastNameEquality && phoneEquality && emailEquality && stylistIdEquality && idEquality);
       }
       else
       {
@@ -37,13 +43,21 @@ namespace HairSalon
     {
       return _id;
     }
-    public string GetName()
+    public string GetFirstName()
     {
-      return _name;
+      return _firstName;
     }
-    public void SetName (string newName)
+    public void SetFirstName (string newFirstName)
     {
-      _name = newName;
+      _firstName = newFirstName;
+    }
+    public string GetLastName()
+    {
+      return _lastName;
+    }
+    public void SetLastName (string newLastName)
+    {
+      _lastName = newLastName;
     }
     public string GetPhoneNumber()
     {
@@ -52,6 +66,14 @@ namespace HairSalon
     public void SetPhoneNumber (string newPhoneNumber)
     {
       _phoneNumber = newPhoneNumber;
+    }
+    public string GetEmail()
+    {
+      return _email;
+    }
+    public void SetEmail(string newEmail)
+    {
+      _email = newEmail;
     }
     public int GetStylistId()
     {
@@ -72,10 +94,12 @@ namespace HairSalon
       while (rdr.Read())
       {
         int clientId = rdr.GetInt32(0);
-        string clientName = rdr.GetString(1);
-        string clientPhoneNumber = rdr.GetString(2);
-        int stylistId = rdr.GetInt32(0);
-        Client newClient = new Client (clientName, clientPhoneNumber, stylistId, clientId);
+        string clientFirstName = rdr.GetString(1);
+        string clientLastName = rdr.GetString(2);
+        string clientPhoneNumber = rdr.GetString(3);
+        string clientEmail = rdr.GetString(4);
+        int stylistId = rdr.GetInt32(5);
+        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
         allClients.Add(newClient);
       }
       if (rdr != null)
@@ -93,18 +117,26 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlDataReader rdr;
-      SqlCommand cmd = new SqlCommand ("INSERT INTO clients (name, phone_number, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientPhoneNumber, @StylistId);", conn);
-      SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName = "@ClientName";
-      nameParameter.Value = this.GetName();
+      SqlCommand cmd = new SqlCommand ("INSERT INTO clients (first_name, last_name, phone_number, email, stylist_id) OUTPUT INSERTED.id VALUES (@ClientFirstName, @ClientLastName, @ClientPhoneNumber, @ClientEmail, @StylistId);", conn);
+      SqlParameter firstNameParameter = new SqlParameter();
+      firstNameParameter.ParameterName = "@ClientFirstName";
+      firstNameParameter.Value = this.GetFirstName();
+      SqlParameter lastNameParameter = new SqlParameter();
+      lastNameParameter.ParameterName = "@ClientLastName";
+      lastNameParameter.Value = this.GetLastName();
       SqlParameter phoneParameter = new SqlParameter();
       phoneParameter.ParameterName = "@ClientPhoneNumber";
       phoneParameter.Value = this.GetPhoneNumber();
+      SqlParameter emailParameter = new SqlParameter();
+      emailParameter.ParameterName = "@ClientEmail";
+      emailParameter.Value = this.GetEmail();
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
       stylistIdParameter.Value = this.GetStylistId();
-      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(firstNameParameter);
+      cmd.Parameters.Add(lastNameParameter);
       cmd.Parameters.Add(phoneParameter);
+      cmd.Parameters.Add(emailParameter);
       cmd.Parameters.Add(stylistIdParameter);
       rdr = cmd.ExecuteReader();
       while (rdr.Read())
@@ -135,10 +167,12 @@ namespace HairSalon
       while (rdr.Read())
       {
         int clientId = rdr.GetInt32(0);
-        string clientName = rdr.GetString(1);
-        string clientPhoneNumber = rdr.GetString(2);
-        int stylistId = rdr.GetInt32(3);
-        Client newClient = new Client (clientName, clientPhoneNumber, stylistId, clientId);
+        string clientFirstName = rdr.GetString(1);
+        string clientLastName = rdr.GetString(2);
+        string clientPhoneNumber = rdr.GetString(3);
+        string clientEmail = rdr.GetString(4);
+        int stylistId = rdr.GetInt32(5);
+        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
         allClients.Add(newClient);
       }
       if (rdr != null)
