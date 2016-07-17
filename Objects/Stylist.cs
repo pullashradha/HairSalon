@@ -240,15 +240,11 @@ namespace HairSalon
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand ("DELETE FROM stylists WHERE id = @SearchId; DELETE FROM clients WHERE stylist_id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand ("DELETE FROM stylists WHERE id = @SearchId; DELETE FROM clients WHERE stylist_id = @SearchId;", conn);
       SqlParameter idParameter = new SqlParameter();
       idParameter.ParameterName = "@SearchId";
       idParameter.Value = searchId;
-      SqlParameter stylistIdParameter = new SqlParameter();
-      stylistIdParameter.ParameterName = "@StylistId";
-      stylistIdParameter.Value = searchId;
       cmd.Parameters.Add(idParameter);
-      cmd.Parameters.Add(stylistIdParameter);
       cmd.ExecuteNonQuery();
     }
     public static void DeleteAll()
