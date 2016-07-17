@@ -25,7 +25,6 @@ This program can only be accessed on a PC with Windows 10, and with Git, Atom, a
 
 ## Known Bugs
 
-* Deleting a Stylist through the web page does not delete all respective clients under that Stylist in the database
 * Id numbers for the Stylists and Clients do not reset after previous entries are deleted from the database
 * CSS styling is not functioning on all the pages, aside from index.cshtml
 
@@ -33,12 +32,14 @@ This program can only be accessed on a PC with Windows 10, and with Git, Atom, a
 
 The program should ... | Example Input | Example Output
 ----- | ----- | -----
-Add stylist to database in stylists table | --- | ---
-Add client to database under a specific stylist's registry/category | --- | ---
-View all stylists in the salon | --- | ---
-View all clients for each individual stylist | --- | ---
-Delete a stylist & corresponding clients from database | --- | ---
-Delete a client from a stylist's registry, without deleting other clients | --- | ---
+Add stylist to database in stylists table | Stylist: Terry Jones | Current Stylist: "Terry Jones"
+Return correct page for stylist when the stylist's name is clicked on | User clicks on "Terry Jones" on index.cshtml | "Terry Jones", "call for appointments"
+View all stylists in the salon | Current Stylists: none, user adds stylist| Current Stylists: "Terry Jones"
+Delete one stylist & corresponding clients from database, without deleting other stylists | Current Stylist: "Terry Jones" & "Paige Davidson", Terry Jones' Clients: "Maya Reddy", Paige Davidson's Clients: "Rubab Shah" | Current Stylists: "Paige Davidson", Paige Davidson's Clients: "Rubab Shah"
+Delete all stylists & corresponding clients from database | Current Stylist: "Terry Jones" & "Paige Davidson", Terry Jones' Clients: "Maya Reddy", Paige Davidson's Clients: "Rubab Shah" | Current Stylists: none
+Add client to database under a specific stylist | Client: "Maya Reddy" | Terry Jones' Clients: "Maya Reddy"
+View all clients for each individual stylist on stylist.cshtml | Terry Jones' Clients: none, user adds client | Terry Jones' Clients: "Maya Reddy"
+Delete one client from a stylist's registry, without deleting other clients | Terry Jones' Clients: "Maya Reddy" & "Rubab Shah", user deletes client| Terry Jones' Clients: "Rubab Shah"
 
 ## Future Features
 
