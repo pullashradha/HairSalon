@@ -6,18 +6,25 @@
   <h1 class="page-header">@Model.GetFirstName() @Model.GetLastName()</h1>
   <h3>Call for appointments: @Model.GetPhoneNumber()</h3>
   <h2 id="current-clients-header">Current Clients</h2>
-  @foreach (var client in Model.GetClients())
+  @if (Model.GetClients().Count == 0)
   {
-    <ul>
-      <li id="client-name">@client.GetFirstName() @client.GetLastName()</li>
-      <li>@client.GetPhoneNumber()</li>
-      <li>
-        <form class="form-group" action="/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/client_list/client_deleted" method="post">
-          <input type="hidden" name="client-id" value="@client.GetId()">
-          <button type="submit" class="btn btn-warning">Delete Client</button>
-        </form>
-      </li>
-    </ul>
+    <p id="no-clients">@Model.GetFirstName() currently does not have any clients</p>
+  }
+  else
+  {
+    @foreach (var client in Model.GetClients())
+    {
+      <ul>
+        <li id="client-name">@client.GetFirstName() @client.GetLastName()</li>
+        <li>@client.GetPhoneNumber()</li>
+        <li>
+          <form class="form-group" action="/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/client_list/client_deleted" method="post">
+            <input type="hidden" name="client-id" value="@client.GetId()">
+            <button type="submit" class="btn btn-warning">Delete Client</button>
+          </form>
+        </li>
+      </ul>
+    }
   }
   <h2 id="add-client-header">Add a New Client</h2>
   <form class="form-group" action="/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/client_list/client_added" method="post">

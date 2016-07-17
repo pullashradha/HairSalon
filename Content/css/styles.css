@@ -32,6 +32,10 @@ h3 {
   margin-bottom: 30px;
 }
 
+#no-stylists {
+  text-align: center;
+}
+
 /*----------------------Forms & Lists----------------------*/
 
 ul {
@@ -49,6 +53,10 @@ li {
 
 p {
   font-size: 15pt;
+}
+
+#no-clients {
+  text-align: center;
 }
 
 /*----------------------Buttons----------------------*/
