@@ -19,6 +19,9 @@ This program can only be accessed on a PC with Windows 10, and with Git, Atom, a
   * Save the hair_salon.sql file
   * To create the database: click the "!Execute" button on the top nav bar
   * Repeat the above steps to import the test database
+* Test the program:
+  * Type following command into PowerShell > dnx test
+  * All tests should be passing, if not run dnx test again
 * View the web page:
   * Type following command into PowerShell > dnx kestrel
   * Open Chrome and type in the following address: localhost:5004

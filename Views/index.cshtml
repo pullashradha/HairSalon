@@ -14,12 +14,12 @@
     <ul>
       @foreach (var stylist in Model)
       {
-        <li><a href="/@stylist.GetId()/@stylist.GetFirstName()_@stylist.GetLastName()/client_list">@stylist.GetFirstName() @stylist.GetLastName()</a></li>
+        <li><a href="/stylists/@stylist.GetId()/@stylist.GetFirstName()_@stylist.GetLastName()">@stylist.GetFirstName() @stylist.GetLastName()</a></li>
       }
     </ul>
   }
   <h2 id="add-stylist-header">Add a New Stylist</h2>
-  <form class="form-group" action="/stylist/new/created" method="post">
+  <form class="form-group" action="/stylists/new" method="post">
     <div class="row">
 <!-- Name Start -->
       <div class="col-xs-6">
@@ -53,7 +53,7 @@
     <button type="submit" class="btn btn-success">Add Stylist</button>
   </form>
 <!-- Delete All Start -->
-  <form class="form-group" action="/stylist/all_deleted" method="post">
+  <form class="form-group" action="/stylists/deleted" method="post">
     <button type="button" class="btn btn-danger">Delete All Stylists</button>
   </form>
 </body>

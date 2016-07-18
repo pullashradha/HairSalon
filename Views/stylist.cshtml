@@ -18,7 +18,7 @@
         <li id="client-name">@client.GetFirstName() @client.GetLastName()</li>
         <li>@client.GetPhoneNumber()</li>
         <li>
-          <form class="form-group" action="/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/client_list/client_deleted" method="post">
+          <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/deleted" method="post">
             <input type="hidden" name="client-id" value="@client.GetId()">
             <button type="submit" class="btn btn-warning">Delete Client</button>
           </form>
@@ -27,7 +27,7 @@
     }
   }
   <h2 id="add-client-header">Add a New Client</h2>
-  <form class="form-group" action="/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/client_list/client_added" method="post">
+  <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/new" method="post">
     <div class="row">
 <!-- Names Start -->
       <div class="col-xs-6">
@@ -51,7 +51,7 @@
   </form>
   <h2><a href="/">Home</a></h2>
 <!-- Delete Stylist Start -->
-  <form class="form-group" action="/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/stylist_deleted" method="post">
+  <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/deleted" method="post">
     <input type="hidden" name="stylist-id" value="@Model.GetId()">
     <button type="submit" class="btn btn-danger" id="delete-one-stylist">Delete @Model.GetFirstName() @Model.GetLastName()</button>
   </form>

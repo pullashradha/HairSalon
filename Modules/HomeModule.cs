@@ -9,7 +9,7 @@ namespace HairSalon
       Get ["/"] = _ => {
         return View ["index.cshtml", Stylist.GetAll()];
       };
-      Post ["/stylist/new/created"] = _ => {
+      Post ["/stylists/new"] = _ => {
         Stylist newStylist = new Stylist
         (
           Request.Form ["stylist-first-name"],
@@ -24,11 +24,11 @@ namespace HairSalon
         newStylist.Save();
         return View ["stylist_created.cshtml", newStylist];
       };
-      Get ["/{id}/{first_name}_{last_name}/client_list"] = parameters => {
+      Get ["/stylists/{id}/{first_name}_{last_name}"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         return View ["stylist.cshtml", selectedStylist];
       };
-      Post ["/{id}/{first_name}_{last_name}/client_list/client_added"] = parameters => {
+      Post ["/stylists/{id}/{first_name}_{last_name}/clients/new"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         Client newClient = new Client
         (
@@ -41,17 +41,17 @@ namespace HairSalon
         newClient.Save();
         return View ["stylist.cshtml", Stylist.Find(Request.Form["stylist-id"])];
       };
-      Post ["/{id}/{first_name}_{last_name}/client_list/client_deleted"] = parameters => {
+      Post ["/stylists/{id}/{first_name}_{last_name}/clients/deleted"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         Client.DeleteOne(Request.Form ["client-id"]);
         return View ["stylist.cshtml", selectedStylist];
       };
-      Post ["/{id}/{first_name}_{last_name}/stylist_deleted"] = parameters => {
+      Post ["/stylists/{id}/{first_name}_{last_name}/deleted"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         Stylist.DeleteOne(Request.Form["stylist-id"]);
         return View ["stylist_deleted.cshtml", selectedStylist];
       };
-      Post ["/stylist/all_deleted"] = _ => {
+      Post ["/stylists/deleted"] = _ => {
         Stylist.DeleteAll();
         return View ["index.cshtml", Stylist.GetAll()];
       };
