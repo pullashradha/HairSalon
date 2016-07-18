@@ -185,7 +185,7 @@ namespace HairSalon
       }
       return allClients[0];
     }
-    public static void DeleteOne (int searchId)
+    public void DeleteOne ()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();

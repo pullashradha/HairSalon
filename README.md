@@ -25,7 +25,7 @@ This program can only be accessed on a PC with Windows 10, and with Git, Atom, a
 
 ## Known Bugs
 
-* CSS styling is not functioning on all the pages, aside from index.cshtml
+No known bugs.
 
 ## Specifications
 

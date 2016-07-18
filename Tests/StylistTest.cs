@@ -49,7 +49,7 @@ namespace HairSalon
       secondStylist.Save();
       Stylist thirdStylist = new Stylist ("Burrow", "Davidson", "222-222-2222", "davidson@gmail.com", "1112 E Oak Blvd.", "Seattle", "WA", "87456");
       thirdStylist.Save();
-      Stylist.DeleteOne(firstStylist.GetId());
+      firstStylist.DeleteOne();
       Assert.Equal(2, Stylist.GetAll().Count);
     }
     [Fact]
