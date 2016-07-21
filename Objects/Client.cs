@@ -83,35 +83,6 @@ namespace HairSalon
     {
       _stylistId = newStylistId;
     }
-    public static List<Client> GetAll()
-    {
-      List<Client> allClients = new List<Client> {};
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlDataReader rdr;
-      SqlCommand cmd = new SqlCommand ("SELECT * FROM clients;", conn);
-      rdr = cmd.ExecuteReader();
-      while (rdr.Read())
-      {
-        int clientId = rdr.GetInt32(0);
-        string clientFirstName = rdr.GetString(1);
-        string clientLastName = rdr.GetString(2);
-        string clientPhoneNumber = rdr.GetString(3);
-        string clientEmail = rdr.GetString(4);
-        int stylistId = rdr.GetInt32(5);
-        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
-        allClients.Add(newClient);
-      }
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-      if (conn != null)
-      {
-        conn.Close();
-      }
-      return allClients;
-    }
     public void Save()
     {
       SqlConnection conn = DB.Connection();
@@ -151,6 +122,35 @@ namespace HairSalon
       {
         conn.Close();
       }
+    }
+    public static List<Client> GetAll()
+    {
+      List<Client> allClients = new List<Client> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM clients;", conn);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientFirstName = rdr.GetString(1);
+        string clientLastName = rdr.GetString(2);
+        string clientPhoneNumber = rdr.GetString(3);
+        string clientEmail = rdr.GetString(4);
+        int stylistId = rdr.GetInt32(5);
+        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
+        allClients.Add(newClient);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allClients;
     }
     public static Client Find (int searchId)
     {

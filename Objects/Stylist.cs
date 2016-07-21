@@ -116,38 +116,6 @@ namespace HairSalon
     {
       _zipcode = newZipcode;
     }
-    public static List<Stylist> GetAll()
-    {
-      List<Stylist> allStylists = new List<Stylist> {};
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlDataReader rdr;
-      SqlCommand cmd = new SqlCommand ("SELECT * FROM stylists;", conn);
-      rdr = cmd.ExecuteReader();
-      while (rdr.Read())
-      {
-        int stylistId = rdr.GetInt32(0);
-        string stylistFirstName = rdr.GetString(1);
-        string stylistLastName = rdr.GetString(2);
-        string stylistPhoneNumber = rdr.GetString(3);
-        string stylistEmail = rdr.GetString(4);
-        string stylistStreet = rdr.GetString(5);
-        string stylistCity = rdr.GetString(6);
-        string stylistState = rdr.GetString(7);
-        string stylistZipcode = rdr.GetString(8);
-        Stylist newStylist = new Stylist (stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZipcode, stylistId);
-        allStylists.Add(newStylist);
-      }
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-      if (conn != null)
-      {
-        conn.Close();
-      }
-      return allStylists;
-    }
     public void Save()
     {
       SqlConnection conn = DB.Connection();
@@ -200,6 +168,71 @@ namespace HairSalon
         conn.Close();
       }
     }
+    public static List<Stylist> GetAll()
+    {
+      List<Stylist> allStylists = new List<Stylist> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM stylists;", conn);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int stylistId = rdr.GetInt32(0);
+        string stylistFirstName = rdr.GetString(1);
+        string stylistLastName = rdr.GetString(2);
+        string stylistPhoneNumber = rdr.GetString(3);
+        string stylistEmail = rdr.GetString(4);
+        string stylistStreet = rdr.GetString(5);
+        string stylistCity = rdr.GetString(6);
+        string stylistState = rdr.GetString(7);
+        string stylistZipcode = rdr.GetString(8);
+        Stylist newStylist = new Stylist (stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZipcode, stylistId);
+        allStylists.Add(newStylist);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allStylists;
+    }
+    // public List<Client> GetClients()
+    // {
+    //   List<Client> allClients = new List<Client> {};
+    //   SqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //   SqlDataReader rdr;
+    //   SqlCommand cmd = new SqlCommand ("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
+    //   SqlParameter stylistIdParameter = new SqlParameter();
+    //   stylistIdParameter.ParameterName = "@StylistId";
+    //   stylistIdParameter.Value = this.GetId();
+    //   cmd.Parameters.Add(stylistIdParameter);
+    //   rdr = cmd.ExecuteReader();
+    //   while (rdr.Read())
+    //   {
+    //     int clientId = rdr.GetInt32(0);
+    //     string clientFirstName = rdr.GetString(1);
+    //     string clientLastName = rdr.GetString(2);
+    //     string clientPhoneNumber = rdr.GetString(3);
+    //     string clientEmail = rdr.GetString(4);
+    //     int stylistId = this._id;
+    //     Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
+    //     allClients.Add(newClient);
+    //   }
+    //   if (rdr != null)
+    //   {
+    //     rdr.Close();
+    //   }
+    //   if (conn != null)
+    //   {
+    //     conn.Close();
+    //   }
+    //   return allClients;
+    // }
     public static Stylist Find (int searchId)
     {
       List<Stylist> allStylists = new List<Stylist> {};
@@ -253,39 +286,6 @@ namespace HairSalon
       conn.Open();
       SqlCommand cmd = new SqlCommand ("DELETE FROM stylists; DELETE FROM clients", conn);
       cmd.ExecuteNonQuery();
-    }
-    public List<Client> GetClients()
-    {
-      List<Client> allClients = new List<Client> {};
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlDataReader rdr;
-      SqlCommand cmd = new SqlCommand ("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
-      SqlParameter stylistIdParameter = new SqlParameter();
-      stylistIdParameter.ParameterName = "@StylistId";
-      stylistIdParameter.Value = this.GetId();
-      cmd.Parameters.Add(stylistIdParameter);
-      rdr = cmd.ExecuteReader();
-      while (rdr.Read())
-      {
-        int clientId = rdr.GetInt32(0);
-        string clientFirstName = rdr.GetString(1);
-        string clientLastName = rdr.GetString(2);
-        string clientPhoneNumber = rdr.GetString(3);
-        string clientEmail = rdr.GetString(4);
-        int stylistId = this._id;
-        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
-        allClients.Add(newClient);
-      }
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-      if (conn != null)
-      {
-        conn.Close();
-      }
-      return allClients;
     }
   }
 }
