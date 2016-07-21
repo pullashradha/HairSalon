@@ -40,18 +40,21 @@ namespace HairSalon
       Stylist foundStylist = Stylist.Find(newStylist.GetId());
       Assert.Equal(newStylist, foundStylist);
     }
-    // [Fact]
-    // public void Test_DeleteOne_DeletesOneStylist()
-    // {
-    //   Stylist firstStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
-    //   firstStylist.Save();
-    //   Stylist secondStylist = new Stylist ("Page", "Williams", "000-000-0000", "williams@gmail.com", "5432 NE Jefferson Ave.", "Portland", "OR", "93210");
-    //   secondStylist.Save();
-    //   Stylist thirdStylist = new Stylist ("Burrow", "Davidson", "222-222-2222", "davidson@gmail.com", "1112 E Oak Blvd.", "Seattle", "WA", "87456");
-    //   thirdStylist.Save();
-    //   firstStylist.DeleteOne();
-    //   Assert.Equal(2, Stylist.GetAll().Count);
-    // }
+    [Fact]
+    public void Test_DeleteOne_DeletesOneStylist()
+    {
+      Stylist firstStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
+      firstStylist.Save();
+      Stylist secondStylist = new Stylist ("Page", "Williams", "000-000-0000", "williams@gmail.com", "5432 NE Jefferson Ave.", "Portland", "OR", "93210");
+      secondStylist.Save();
+      Stylist thirdStylist = new Stylist ("Burrow", "Davidson", "222-222-2222", "davidson@gmail.com", "1112 E Oak Blvd.", "Seattle", "WA", "87456");
+      thirdStylist.Save();
+      List<Stylist> testList = new List<Stylist> {secondStylist, thirdStylist};
+      firstStylist.DeleteOne();
+      List<Stylist> resultList = Stylist.GetAll();
+      Assert.Equal(testList, resultList);
+      Assert.Equal(2, Stylist.GetAll().Count);
+    }
     [Fact]
     public void Test_GetClients_ReturnsAllClientsById()
     {
