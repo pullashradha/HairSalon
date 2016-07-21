@@ -274,7 +274,7 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlDataReader rdr;
-      SqlCommand cmd = new SqlCommand ("UPDATE stylists SET first_name = @NewFirstName WHERE id = @StylistId; UPDATE stylists SET last_name = @NewLastName WHERE id = @StylistId; UPDATE stylists SET phone_number = @NewPhoneNumber WHERE id = @StylistId; UPDATE stylists SET email = @NewEmail WHERE id = @StylistId; UPDATE stylists SET street_address = @NewStreetAddress, city_address = @NewCity, state_address = @NewState, zipcode = @NewZipcode WHERE id = @StylistId", conn);
+      SqlCommand cmd = new SqlCommand ("UPDATE stylists SET first_name = @NewFirstName, last_name = @NewLastName, phone_number = @NewPhoneNumber, email = @NewEmail, street_address = @NewStreetAddress, city_address = @NewCity, state_address = @NewState, zipcode = @NewZipcode WHERE id = @StylistId", conn);
       SqlParameter newFirstNameParameter = new SqlParameter();
       newFirstNameParameter.ParameterName = "@NewFirstName";
       newFirstNameParameter.Value = this.GetFirstName();
@@ -283,6 +283,7 @@ namespace HairSalon
       newLastNameParameter.Value = this.GetLastName();
       SqlParameter newPhoneParameter = new SqlParameter();
       newPhoneParameter.ParameterName = "@NewPhoneNumber";
+      newPhoneParameter.Value = this.GetPhoneNumber();
       SqlParameter newEmailParameter = new SqlParameter();
       newEmailParameter.ParameterName = "@NewEmail";
       newEmailParameter.Value = this.GetEmail();

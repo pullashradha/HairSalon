@@ -57,10 +57,10 @@ namespace HairSalon
     {
       Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       newStylist.Save();
-      newStylist.SetLastName("Henry");
+      newStylist.SetStreetAddress("2222 E Kones Blvd.");
       newStylist.Update();
       Stylist updatedStylist = Stylist.Find(newStylist.GetId());
-      Assert.Equal(newStylist.GetLastName(), updatedStylist.GetLastName());
+      Assert.Equal(newStylist.GetStreetAddress(), updatedStylist.GetStreetAddress());
     }
     [Fact]
     public void Test_DeleteOne_DeletesOneStylist()
