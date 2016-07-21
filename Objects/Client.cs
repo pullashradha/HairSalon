@@ -185,7 +185,46 @@ namespace HairSalon
       }
       return allClients[0];
     }
-    
+    public void Update()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr;
+      SqlCommand cmd = new SqlCommand ("UPDATE clients SET first_name = @NewFirstName, last_name = @NewLastName, phone_number = @NewPhoneNumber, email = @NewEmail WHERE id = @ClientId;", conn);
+      SqlParameter newFirstNameParameter = new SqlParameter();
+      newFirstNameParameter.ParameterName = "@NewFirstName";
+      newFirstNameParameter.Value = this.GetFirstName();
+      SqlParameter newLastNameParameter = new SqlParameter();
+      newLastNameParameter.ParameterName = "@NewLastName";
+      newLastNameParameter.Value = this.GetLastName();
+      SqlParameter newPhoneParameter = new SqlParameter();
+      newPhoneParameter.ParameterName = "@NewPhoneNumber";
+      newPhoneParameter.Value = this.GetPhoneNumber();
+      SqlParameter newEmailParameter = new SqlParameter();
+      newEmailParameter.ParameterName = "@NewEmail";
+      newEmailParameter.Value = this.GetEmail();
+      SqlParameter idParameter = new SqlParameter();
+      idParameter.ParameterName = "@ClientId";
+      idParameter.Value = this.GetId();
+      cmd.Parameters.Add(newFirstNameParameter);
+      cmd.Parameters.Add(newLastNameParameter);
+      cmd.Parameters.Add(newPhoneParameter);
+      cmd.Parameters.Add(newEmailParameter);
+      cmd.Parameters.Add(idParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
     public void DeleteOne ()
     {
       SqlConnection conn = DB.Connection();
