@@ -18,8 +18,8 @@ This program can only be accessed on a PC with Windows 10, and with Git, Atom, a
   * Select the following buttons from the top nav bar to open the database scripts file: File>Open>File>"Desktop\HairSalon\SqlDatabases\hair_salon.sql"
   * Save the hair_salon.sql file
   * To create the database: click the "!Execute" button on the top nav bar
-  * To create the database another way type the following into the top of the sql file:
-    * CREATE DATABASE hair_salon
+  * To create the database another way, type the following into the top of the sql file:
+    * CREATE DATABASE hair_salon;
     * GO
   * Refresh SSMS
   * Repeat the above steps to import the test database

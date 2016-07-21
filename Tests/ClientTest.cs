@@ -41,6 +41,16 @@ namespace HairSalon
       Assert.Equal(newClient, foundClient);
     }
     [Fact]
+    public void Test_Update_UpdatesClientEntry()
+    {
+      Client newClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);
+      newClient.Save();
+      newClient.SetLastName("James");
+      newClient.Update();
+      Client updatedClient = Client.Find(newClient.GetId());
+      Assert.Equal(newClient.GetLastName(), updatedClient.GetLastName());
+    }
+    [Fact]
     public void Test_DeleteOne_DeletesOneClient()
     {
       Client firstClient = new Client ("Jennifer", "Smith", "333-333-3333", "smith@gmail.com", 1);

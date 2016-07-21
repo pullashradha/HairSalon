@@ -185,6 +185,7 @@ namespace HairSalon
       }
       return allClients[0];
     }
+    
     public void DeleteOne ()
     {
       SqlConnection conn = DB.Connection();
