@@ -6,7 +6,7 @@
 
 ## Description
 
-This program is a web application designed for managing a hair salon. It will allow the owner to add stylists to a list, add clients for each stylist, and store the information. The program will also allow for basic data manipulation such as: removing a stylist from the salon database, removing a client from a stylist's registry, and deleting all stylists and clients.
+This program is a web application designed for managing a hair salon. It will allow the owner to add stylists to a list, add clients for each stylist, and store the information. The program will also allow for basic data manipulation such as: removing a stylist from the salon database, removing a client from a stylist's records, and deleting all stylists and clients.
 
 ## Setup/Installation Requirements
 
@@ -40,12 +40,14 @@ The program should ... | Example Input | Example Output
 ----- | ----- | -----
 Add stylist to database in stylists table | Stylist: Terry Jones | Current Stylist: "Terry Jones"
 Return correct page for stylist when the stylist's name is clicked on | User clicks on "Terry Jones" on index.cshtml | "Terry Jones", "call for appointments"
+Update stylist information | Terry Jones: "101 SW Washington St.", update address | Terry Jones: "2222 E Kones Blvd."
 View all stylists in the salon | Current Stylists: none, user adds stylist| Current Stylists: "Terry Jones"
-Delete one stylist & corresponding clients from database, without deleting other stylists | Current Stylist: "Terry Jones" & "Paige Davidson", Terry Jones' Clients: "Maya Reddy", Paige Davidson's Clients: "Rubab Shah" | Current Stylists: "Paige Davidson", Paige Davidson's Clients: "Rubab Shah"
+Delete one stylist & corresponding clients from database | Current Stylist: "Terry Jones" & "Paige Davidson", Terry Jones' Clients: "Maya Reddy", Paige Davidson's Clients: "Rubab Shah" | Current Stylists: "Paige Davidson", Paige Davidson's Clients: "Rubab Shah"
 Delete all stylists & corresponding clients from database | Current Stylist: "Terry Jones" & "Paige Davidson", Terry Jones' Clients: "Maya Reddy", Paige Davidson's Clients: "Rubab Shah" | Current Stylists: none
 Add client to database under a specific stylist | Client: "Maya Reddy" | Terry Jones' Clients: "Maya Reddy"
-View all clients for each individual stylist on stylist.cshtml | Terry Jones' Clients: none, user adds client | Terry Jones' Clients: "Maya Reddy"
-Delete one client from a stylist's registry, without deleting other clients | Terry Jones' Clients: "Maya Reddy" & "Rubab Shah", user deletes client| Terry Jones' Clients: "Rubab Shah"
+Update client information | Client: "Jennifer Smith", change last name | Client: "Jennifer James"
+View all clients for each individual stylist | Terry Jones' Clients: none, user adds client | Terry Jones' Clients: "Maya Reddy"
+Delete one client from a stylist's records | Terry Jones' Clients: "Maya Reddy" & "Rubab Shah", user deletes client| Terry Jones' Clients: "Rubab Shah"
 
 ## Future Features
 
