@@ -200,39 +200,39 @@ namespace HairSalon
       }
       return allStylists;
     }
-    // public List<Client> GetClients()
-    // {
-    //   List<Client> allClients = new List<Client> {};
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlDataReader rdr;
-    //   SqlCommand cmd = new SqlCommand ("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
-    //   SqlParameter stylistIdParameter = new SqlParameter();
-    //   stylistIdParameter.ParameterName = "@StylistId";
-    //   stylistIdParameter.Value = this.GetId();
-    //   cmd.Parameters.Add(stylistIdParameter);
-    //   rdr = cmd.ExecuteReader();
-    //   while (rdr.Read())
-    //   {
-    //     int clientId = rdr.GetInt32(0);
-    //     string clientFirstName = rdr.GetString(1);
-    //     string clientLastName = rdr.GetString(2);
-    //     string clientPhoneNumber = rdr.GetString(3);
-    //     string clientEmail = rdr.GetString(4);
-    //     int stylistId = this._id;
-    //     Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
-    //     allClients.Add(newClient);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return allClients;
-    // }
+    public List<Client> GetClients()
+    {
+      List<Client> allClients = new List<Client> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(stylistIdParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientFirstName = rdr.GetString(1);
+        string clientLastName = rdr.GetString(2);
+        string clientPhoneNumber = rdr.GetString(3);
+        string clientEmail = rdr.GetString(4);
+        int stylistId = this._id;
+        Client newClient = new Client (clientFirstName, clientLastName, clientPhoneNumber, clientEmail, stylistId, clientId);
+        allClients.Add(newClient);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allClients;
+    }
     public static Stylist Find (int searchId)
     {
       List<Stylist> allStylists = new List<Stylist> {};
@@ -268,6 +268,61 @@ namespace HairSalon
         conn.Close();
       }
       return allStylists[0];
+    }
+    public void Update()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr;
+      SqlCommand cmd = new SqlCommand ("UPDATE stylists SET first_name = @NewFirstName WHERE id = @StylistId; UPDATE stylists SET last_name = @NewLastName WHERE id = @StylistId; UPDATE stylists SET phone_number = @NewPhoneNumber WHERE id = @StylistId; UPDATE stylists SET email = @NewEmail WHERE id = @StylistId; UPDATE stylists SET street_address = @NewStreetAddress, city_address = @NewCity, state_address = @NewState, zipcode = @NewZipcode WHERE id = @StylistId", conn);
+      SqlParameter newFirstNameParameter = new SqlParameter();
+      newFirstNameParameter.ParameterName = "@NewFirstName";
+      newFirstNameParameter.Value = this.GetFirstName();
+      SqlParameter newLastNameParameter = new SqlParameter();
+      newLastNameParameter.ParameterName = "@NewLastName";
+      newLastNameParameter.Value = this.GetLastName();
+      SqlParameter newPhoneParameter = new SqlParameter();
+      newPhoneParameter.ParameterName = "@NewPhoneNumber";
+      SqlParameter newEmailParameter = new SqlParameter();
+      newEmailParameter.ParameterName = "@NewEmail";
+      newEmailParameter.Value = this.GetEmail();
+      SqlParameter newStreetParameter = new SqlParameter();
+      newStreetParameter.ParameterName = "@NewStreetAddress";
+      newStreetParameter.Value = this.GetStreetAddress();
+      SqlParameter newCityParameter = new SqlParameter();
+      newCityParameter.ParameterName = "@NewCity";
+      newCityParameter.Value = this.GetCity();
+      SqlParameter newStateParameter = new SqlParameter();
+      newStateParameter.ParameterName = "@NewState";
+      newStateParameter.Value = this.GetState();
+      SqlParameter newZipcodeParameter = new SqlParameter();
+      newZipcodeParameter.ParameterName = "@NewZipcode";
+      newZipcodeParameter.Value = this.GetZipcode();
+      SqlParameter idParameter = new SqlParameter();
+      idParameter.ParameterName = "@StylistId";
+      idParameter.Value = this.GetId();
+      cmd.Parameters.Add(newFirstNameParameter);
+      cmd.Parameters.Add(newLastNameParameter);
+      cmd.Parameters.Add(newPhoneParameter);
+      cmd.Parameters.Add(newEmailParameter);
+      cmd.Parameters.Add(newStreetParameter);
+      cmd.Parameters.Add(newCityParameter);
+      cmd.Parameters.Add(newStateParameter);
+      cmd.Parameters.Add(newZipcodeParameter);
+      cmd.Parameters.Add(idParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
     public void DeleteOne ()
     {

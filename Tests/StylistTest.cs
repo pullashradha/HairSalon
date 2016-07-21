@@ -33,12 +33,34 @@ namespace HairSalon
       Assert.Equal(1, Stylist.GetAll().Count);
     }
     [Fact]
+    public void Test_GetClients_ReturnsAllClientsById()
+    {
+      Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
+      newStylist.Save();
+      Client firstClient = new Client ("Rubab", "Shah", "777-777-7777", "shah@gmail.com", newStylist.GetId());
+      firstClient.Save();
+      Client secondClient = new Client ("Maya", "Reddy", "888-888-8888", "reddy@gmail.com", newStylist.GetId());
+      secondClient.Save();
+      List<Client> allClients = new List<Client> {firstClient, secondClient};
+      Assert.Equal(allClients, newStylist.GetClients());
+    }
+    [Fact]
     public void Test_Find_ReturnsCorrectStylistById()
     {
       Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       newStylist.Save();
       Stylist foundStylist = Stylist.Find(newStylist.GetId());
       Assert.Equal(newStylist, foundStylist);
+    }
+    [Fact]
+    public void Test_Update_UpdateStylistEntry()
+    {
+      Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
+      newStylist.Save();
+      newStylist.SetLastName("Henry");
+      newStylist.Update();
+      Stylist updatedStylist = Stylist.Find(newStylist.GetId());
+      Assert.Equal(newStylist.GetLastName(), updatedStylist.GetLastName());
     }
     [Fact]
     public void Test_DeleteOne_DeletesOneStylist()
@@ -54,18 +76,6 @@ namespace HairSalon
       List<Stylist> resultList = Stylist.GetAll();
       Assert.Equal(testList, resultList);
       Assert.Equal(2, Stylist.GetAll().Count);
-    }
-    [Fact]
-    public void Test_GetClients_ReturnsAllClientsById()
-    {
-      Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
-      newStylist.Save();
-      Client firstClient = new Client ("Rubab", "Shah", "777-777-7777", "shah@gmail.com", newStylist.GetId());
-      firstClient.Save();
-      Client secondClient = new Client ("Maya", "Reddy", "888-888-8888", "reddy@gmail.com", newStylist.GetId());
-      secondClient.Save();
-      List<Client> allClients = new List<Client> {firstClient, secondClient};
-      Assert.Equal(allClients, newStylist.GetClients());
     }
     public void Dispose()
     {
