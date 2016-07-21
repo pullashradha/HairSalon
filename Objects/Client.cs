@@ -192,7 +192,7 @@ namespace HairSalon
       SqlCommand cmd = new SqlCommand ("DELETE FROM clients WHERE id = @SearchId;", conn);
       SqlParameter idParameter = new SqlParameter ();
       idParameter.ParameterName = "@SearchId";
-      idParameter.Value = searchId;
+      idParameter.Value = this.GetId();
       cmd.Parameters.Add(idParameter);
       cmd.ExecuteNonQuery();
     }

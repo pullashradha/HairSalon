@@ -49,7 +49,10 @@ namespace HairSalon
       secondClient.Save();
       Client thirdClient = new Client ("Maya", "Reddy", "888-888-8888", "reddy@gmail.com", 3);
       thirdClient.Save();
+      List<Client> testList = new List<Client> {secondClient, thirdClient};
       firstClient.DeleteOne();
+      List<Client> resultList = Client.GetAll();
+      Assert.Equal(testList, resultList);
       Assert.Equal(2, Client.GetAll().Count);
     }
     public void Dispose()
