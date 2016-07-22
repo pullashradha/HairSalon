@@ -67,13 +67,13 @@ p {
   margin-bottom: 50px;
 }
 
-.btn-warning {
+.btn-warning, .btn-info {
   font-size: 12pt;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.btn-danger {
+.btn-danger, .btn-primary {
   font-size: 20pt;
   margin-bottom: 75px;
   display: block;
@@ -81,7 +81,7 @@ p {
   margin-right: auto;
 }
 
-#delete-one-stylist {
+#delete-one-stylist, #update-one-stylist {
   margin-top: 75px;
 }
 

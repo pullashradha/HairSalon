@@ -17,9 +17,11 @@
       <ul>
         <li id="client-name">@client.GetFirstName() @client.GetLastName()</li>
         <li>@client.GetPhoneNumber()</li>
+        <li>@client.GetEmail()</li>
         <li>
           <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/deleted" method="post">
             <input type="hidden" name="client-id" value="@client.GetId()">
+            <button type="button" class="btn btn-info" formaction="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/updated">Update Client</button>
             <button type="submit" class="btn btn-warning">Delete Client</button>
           </form>
         </li>
@@ -50,9 +52,9 @@
     <button type="submit" class="btn btn-success">Add Client</button>
   </form>
   <h2><a href="/">Home</a></h2>
-<!-- Delete Stylist Start -->
+<!-- Update/Delete Stylist Start -->
   <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/deleted" method="post">
-    <input type="hidden" name="stylist-id" value="@Model.GetId()">
+    <button type="button" class="btn btn-primary" formaction="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/deleted/updated" id="update-one-stylist">Update @Model.GetFirstName() @Model.GetLastName()</button>
     <button type="submit" class="btn btn-danger" id="delete-one-stylist">Delete @Model.GetFirstName() @Model.GetLastName()</button>
   </form>
 </body>
