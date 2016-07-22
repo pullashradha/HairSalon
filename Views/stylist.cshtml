@@ -52,9 +52,41 @@
     <button type="button" class="btn btn-success">Add Client</button>
   </form>
   <h2><a href="/">Home</a></h2>
+  <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/updated" method="post">
+    <div class="row">
+<!-- Name Start -->
+      <div class="col-xs-6">
+        <p>First Name<input required type="text" name="stylist-first-name" class="form-control"></p>
+      </div>
+      <div class="col-xs-6">
+        <p>Last Name<input required type="text" name="stylist-last-name" class="form-control"></p>
+      </div>
+    </div>
+    <div class="row">
+<!-- Other Info Start -->
+      <div class="col-xs-2">
+        <p>Phone Number<input required type="text" name="stylist-phone-number" class="form-control"></p>
+      </div>
+      <div class="col-xs-2">
+        <p>Email Address<input required type="text" name="stylist-email" class="form-control"></p>
+      </div>
+      <div class="col-xs-3">
+        <p>Street Address<input required type="text" name="stylist-street-address" class="form-control"></p>
+      </div>
+      <div class="col-xs-2">
+        <p>City<input required type="text" name="stylist-city" class="form-control"></p>
+      </div>
+      <div class="col-xs-1">
+        <p>State<input required type="text" name="stylist-state" class="form-control"></p>
+      </div>
+      <div class="col-xs-2">
+        <p>Zipcode<input required type="text" name="stylist-zipcode" class="form-control"></p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Stylist</button>
+  </form>
 <!-- Update/Delete Stylist Start -->
   <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/deleted" method="post">
-    <button type="button" class="btn btn-primary" formaction="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/updated" id="update-one-stylist">Update @Model.GetFirstName() @Model.GetLastName()</button>
     <button type="button" class="btn btn-danger" id="delete-one-stylist">Delete @Model.GetFirstName() @Model.GetLastName()</button>
   </form>
 </body>

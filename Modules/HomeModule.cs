@@ -41,11 +41,19 @@ namespace HairSalon
         newClient.Save();
         return View ["stylist.cshtml", Stylist.Find(Request.Form["stylist-id"])];
       };
-      // Post ["/stylists/{id}/{first_name}_{last_name}/updated"] = parameters => {
-      //   Stylist selectedStylist = Stylist.Find(parameters.id);
-      //   selectedStylist.Update();
-      //   return View ["stylist.cshtml", selectedStylist];
-      // };
+      Post ["/stylists/{id}/{first_name}_{last_name}/updated"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        selectedStylist.SetFirstName(Request.Form ["stylist-first-name"]);
+        selectedStylist.SetLastName(Request.Form ["stylist-last-name"]);
+        selectedStylist.SetPhoneNumber(Request.Form ["stylist-phone-number"]);
+        selectedStylist.SetEmail(Request.Form ["stylist-email"]);
+        selectedStylist.SetStreetAddress(Request.Form ["stylist-street-address"]);
+        selectedStylist.SetCity(Request.Form ["stylist-city"]);
+        selectedStylist.SetState(Request.Form ["stylist-state"]);
+        selectedStylist.SetZipcode(Request.Form ["stylist-zipcode"]);
+        selectedStylist.Update();
+        return View ["stylist.cshtml", selectedStylist];
+      };
       // Post ["/stylists/{id}/{first_name}_{last_name}/clients/deleted"] = parameters => {
       //   Stylist selectedStylist = Stylist.Find(parameters.id);
       //   Client selectedClient = new Client(Request.Form ["client-id"]);
