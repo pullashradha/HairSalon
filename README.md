@@ -95,8 +95,8 @@ Delete one client from a stylist's records | Terry Jones' Clients: "Maya Reddy" 
 ## Future Features
 
 HTML | CSS | C#
------ | ----- | Allow user to delete all clients from stylist but not the stylist
 ----- | ----- | -----
+--- | --- | Allow user to delete all clients from stylist but not the stylist
 
 ## Support and Contact Details
 
