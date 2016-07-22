@@ -6,9 +6,7 @@ namespace HairSalon
   {
     public HomeModule()
     {
-      Get ["/"] = _ => {
-        return View ["index.cshtml", Stylist.GetAll()];
-      };
+      Get ["/"] = _ => View ["index.cshtml", Stylist.GetAll()];
       Post ["/stylists/new"] = _ => {
         Stylist newStylist = new Stylist
         (
@@ -54,12 +52,12 @@ namespace HairSalon
         selectedStylist.Update();
         return View ["stylist.cshtml", selectedStylist];
       };
-      // Post ["/stylists/{id}/{first_name}_{last_name}/clients/deleted"] = parameters => {
-      //   Stylist selectedStylist = Stylist.Find(parameters.id);
-      //   Client selectedClient = new Client(Request.Form ["client-id"]);
-      //   selectedClient.DeleteOne();
-      //   return View ["stylist.cshtml", selectedStylist];
-      // };
+      Post ["/stylists/{id}/{first_name}_{last_name}/clients/deleted"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        Client selectedClient = Client.Find(Request.Form ["client-id"]);
+        selectedClient.DeleteOne();
+        return View ["stylist.cshtml", selectedStylist];
+      };
       Post ["/stylists/{id}/{first_name}_{last_name}/deleted"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         selectedStylist.DeleteOne();

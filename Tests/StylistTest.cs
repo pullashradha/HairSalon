@@ -30,7 +30,9 @@ namespace HairSalon
     {
       Stylist newStylist = new Stylist ("Terry", "Jones", "555-555-5555", "jones@gmail.com", "101 SW Washington St.", "Portland", "OR", "97206");
       newStylist.Save();
-      Assert.Equal(1, Stylist.GetAll().Count);
+      List<Stylist> testList = new List<Stylist> {newStylist};
+      List<Stylist> resultList = Stylist.GetAll();
+      Assert.Equal(testList, resultList);
     }
     [Fact]
     public void Test_GetClients_ReturnsAllClientsById()

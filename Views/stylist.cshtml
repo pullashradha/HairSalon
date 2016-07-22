@@ -21,8 +21,8 @@
         <li>
           <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/deleted" method="post">
             <input type="hidden" name="client-id" value="@client.GetId()">
-            <button type="button" class="btn btn-info" formaction="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/updated">Update Client</button>
-            <button type="button" class="btn btn-warning">Delete Client</button>
+            <button type="submit" class="btn btn-info" formaction="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/updated">Update Client</button>
+            <button type="submit" class="btn btn-warning">Delete Client</button>
           </form>
         </li>
       </ul>
@@ -83,7 +83,7 @@
         <p>Zipcode<input required type="text" name="stylist-zipcode" class="form-control"></p>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Update Stylist</button>
+    <button type="submit" class="btn btn-primary">Update @Model.GetFirstName() @Model.GetLastName()</button>
   </form>
 <!-- Update/Delete Stylist Start -->
   <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/deleted" method="post">
