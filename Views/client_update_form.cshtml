@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" href="/Content/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="/Content/css/styles.css" type="text/css">
+</head>
+<body>
+  <h1 class="page-header">Update Client</h1>
+  <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/updated" method="post">
+    <div class="row">
+<!-- Names Start -->
+      <div class="col-xs-6">
+        <p>First Name<input required type="text" name="client-first-name" class="form-control"></p>
+      </div>
+      <div class="col-xs-6">
+        <p>Last Name<input required type="text" name="client-last-name" class="form-control"></p>
+      </div>
+    </div>
+    <div class="row">
+<!-- Other Info Start -->
+      <div class="col-xs-6">
+        <p>Phone Number<input required type="text" name="client-phone-number" class="form-control"></p>
+      </div>
+      <div class="col-xs-6">
+        <p>Email Address<input required type="text" name="client-email" class="form-control"></p>
+      </div>
+    </div>
+    <p>Stylist: @Model.GetFirstName() @Model.GetLastName()<input type="hidden" name="stylist-id" value="@Model.GetId()"></p>
+    <button type="submit" class="btn btn-success">Update Client</button>
+  </form>
+</body>
