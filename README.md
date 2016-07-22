@@ -25,10 +25,53 @@ This program can only be accessed on a PC with Windows 10, and with Git, Atom, a
   * Repeat the above steps to import the test database
 * Test the program:
   * Type following command into PowerShell > dnx test
-  * All tests should be passing, if not run dnx test again
+  * All tests should be passing, if not run dnx test again. Otherwise fix the errors before launching the program on the browser
 * View the web page:
   * Type following command into PowerShell > dnx kestrel
   * Open Chrome and type in the following address: localhost:5004
+
+## Database Creation Instructions
+
+To build the databases from scratch, type the commands below in the Windows PowerShell:
+  * Desktop> SQLCMD -S "[Server-Name]";
+    * 1> CREATE DATABASE hair_salon;
+    * 2> GO
+    * 3> USE hair_salon;
+    * 4> GO
+    * 5> CREATE TABLE stylists
+    * 6>  (
+    * 7>  id INT IDENTITY(1,1),
+    * 8>  first_name VARCHAR(255),
+    * 9>  last_name VARCHAR(255),
+    * 10> phone_number VARCHAR(255),
+    * 11> email VARCHAR(255),
+    * 12> street_address VARCHAR(500),
+    * 13> city_address VARCHAR(255),
+    * 14> state_address VARCHAR(255),
+    * 15> zipcode VARCHAR(255)
+    * 16> );
+    * 17> GO
+    * 18> CREATE TABLE clients
+    * 19> (
+    * 20> id INT IDENTITY(1,1),
+    * 21> first_name VARCHAR(255),
+    * 22> last_name VARCHAR(255),
+    * 23> phone_number VARCHAR(255),
+    * 24> email VARCHAR(255),
+    * 25> stylist_id INT
+    * 26> );
+    * 27> GO
+  * Exit out of SQLCMD by typing> QUIT
+  * Open SSMS, click open Databases folder and check that the hair_salon database has been created
+  * Click "New Query" button on top nav bar (above "!Execute")
+  * Type following command into query text space to backup database: BACKUP DATABASE hair_salon TO DISK = 'C:\Users\[Account-Name]\hair_salon.bak'
+  * Click "!Execute"
+  * Right click hair_salon in the Databases folder: Tasks>Restore>Database
+  * Confirm that there is a database to restore in the "Backup sets to restore" option field
+  * Under the "Destination" input form, change the database name to: "hair_salon_test"
+  * Click "OK", refresh SSMS, and view the new test database in the Database folder
+
+If SQL is not connected in the PowerShell, open SSMS and click the "New Query" button (in nav bar above "!Execute"). Type commands shown above into the text space, starting from "CREATE DATABASE...".
 
 ## Known Bugs
 
