@@ -3,11 +3,12 @@
   <link rel="stylesheet" href="/Content/css/styles.css" type="text/css">
 </head>
 <body>
-  <h1 class="page-header">Update Client</h1>
-  <form class="form-group" action="/stylists/@Model.GetId()/@Model.GetFirstName()_@Model.GetLastName()/clients/updated" method="post">
+  <h1 class="page-header">Update @Model.GetFirstName() @Model.GetLastName()</h1>
+  <form class="form-group" action="/clients/updated" method="post">
     <div class="row">
 <!-- Names Start -->
       <div class="col-xs-6">
+        <input type="hidden" name="client-id" value="@Model.GetId()">
         <p>First Name<input required type="text" name="client-first-name" class="form-control"></p>
       </div>
       <div class="col-xs-6">
@@ -23,7 +24,6 @@
         <p>Email Address<input required type="text" name="client-email" class="form-control"></p>
       </div>
     </div>
-    <p>Stylist: @Model.GetFirstName() @Model.GetLastName()<input type="hidden" name="stylist-id" value="@Model.GetId()"></p>
-    <button type="submit" class="btn btn-success">Update Client</button>
+    <button type="submit" class="btn btn-success">Update</button>
   </form>
 </body>

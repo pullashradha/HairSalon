@@ -56,17 +56,15 @@ namespace HairSalon
         Client selectedClient = Client.Find(parameters.id);
         return View ["client_update_form.cshtml", selectedClient];
       };
-      // Post ["/stylists/{id}/{first_name}_{last_name}/clients/updated"] = parameters => {
-      //   Stylist selectedStylist = Stylist.Find(Request.Form ["stylist-id"]);
-      //   Client updatedClient = new Client.Find(parameters.id);
-      //   selectedClient.SetFirstName(Request.Form ["client-first-name"]);
-      //   selectedClient.SetLastName(Request.Form ["client-last-name"]);
-      //   selectedClient.SetPhoneNumber(Request.Form ["client-phone-number"]);
-      //   selectedClient.SetEmail(Request.Form ["client-email"]);
-      //   selectedClient.SetStylistId(Request.Form ["stylist-id"]);
-      //   selectedClient.Update();
-      //   return View ["stylist.cshtml", selectedStylist];
-      // };
+      Post ["/clients/updated"] = _ => {
+        Client selectedClient = Client.Find(Request.Form ["client-id"]);
+        selectedClient.SetFirstName(Request.Form ["client-first-name"]);
+        selectedClient.SetLastName(Request.Form ["client-last-name"]);
+        selectedClient.SetPhoneNumber(Request.Form ["client-phone-number"]);
+        selectedClient.SetEmail(Request.Form ["client-email"]);
+        selectedClient.Update();
+        return View ["client_updated.cshtml", selectedClient];
+      };
       Post ["/stylists/{id}/{first_name}_{last_name}/clients/deleted"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         Client selectedClient = Client.Find(Request.Form ["client-id"]);
