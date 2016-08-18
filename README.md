@@ -79,7 +79,7 @@ No known bugs.
 
 ## Specifications
 
-The program should ... | Example Input | Example Output
+The program should... | Example Input | Example Output
 ----- | ----- | -----
 Add stylist to database in stylists table | Stylist: Terry Jones | Current Stylist: "Terry Jones"
 Return correct page for stylist when the stylist's name is clicked on | User clicks on "Terry Jones" on index.cshtml | "Terry Jones", "call for appointments"
